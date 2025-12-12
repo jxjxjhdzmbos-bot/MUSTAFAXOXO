@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background">
+
+    <TextView
+        android:id="@+id/statusText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/your_turn"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/primary"
+        android:gravity="center"
+        android:padding="16dp"/>
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gameBoard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="16dp"
+        app:columnCount="3"
+        app:rowCount="3">
+
+        <TextView
+            android:id="@+id/cell00"
+            style="@style/CellStyle"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:id="@+id/cell01"
+            style="@style/CellStyle"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:id="@+id/cell02"
+            style="@style/CellStyle"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:id="@+id/cell10"
+            style="@style/CellStyle"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:id="@+id/cell11"
+            style="@style/CellStyle"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:id="@+id/cell12"
+            style="@style/CellStyle"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:id="@+id/cell20"
+            style="@style/CellStyle"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:id="@+id/cell21"
+            style="@style/CellStyle"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:layout_margin="4dp"/>
+
+        <TextView
+            android:id="@+id/cell22"
+            style="@style/CellStyle"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
+            android:layout_margin="4dp"/>
+
+    </androidx.gridlayout.widget.GridLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/playAgainButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:text="@string/play_again"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/backToMenuButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:text="@string/back_to_menu"/>
+
+    </LinearLayout>
+
+</LinearLayout>

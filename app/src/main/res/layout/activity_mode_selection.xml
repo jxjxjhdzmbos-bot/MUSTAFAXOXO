@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="@color/background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Game Mode"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/primary"
+        android:layout_marginBottom="32dp"/>
+
+    <Button
+        android:id="@+id/pvpButton"
+        style="@style/ButtonStyle"
+        android:text="@string/pvp_mode"
+        android:backgroundTint="@color/primary"/>
+
+    <Button
+        android:id="@+id/pvaiButton"
+        style="@style/ButtonStyle"
+        android:text="@string/pvai_mode"
+        android:backgroundTint="@color/accent"/>
+
+    <LinearLayout
+        android:id="@+id/difficultyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_difficulty"
+            android:textSize="18sp"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/easyButton"
+            style="@style/ButtonStyle"
+            android:text="@string/easy"/>
+
+        <Button
+            android:id="@+id/mediumButton"
+            style="@style/ButtonStyle"
+            android:text="@string/medium"/>
+
+        <Button
+            android:id="@+id/hardButton"
+            style="@style/ButtonStyle"
+            android:text="@string/hard"/>
+    </LinearLayout>
+
+</LinearLayout>

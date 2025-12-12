@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">XO Game</string>
+    
+    <!-- Main Menu -->
+    <string name="welcome">Welcome to XO Game</string>
+    <string name="offline_mode">Offline Mode</string>
+    <string name="online_mode">Online Mode</string>
+    <string name="about">About</string>
+    <string name="sign_in">Sign In with Google</string>
+    <string name="sign_out">Sign Out</string>
+    
+    <!-- Mode Selection -->
+    <string name="pvp_mode">Player vs Player</string>
+    <string name="pvai_mode">Player vs AI</string>
+    <string name="select_difficulty">Select Difficulty</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    
+    <!-- Online Mode -->
+    <string name="create_room">Create Room</string>
+    <string name="join_room">Join Room</string>
+    <string name="room_name">Room Name</string>
+    <string name="enter_room_name">Enter room name (1-20 characters, alphanumeric)</string>
+    <string name="waiting_for_opponent">Waiting for opponent...</string>
+    <string name="opponent_disconnected">Opponent disconnected</string>
+    <string name="connection_error">Connection error</string>
+    
+    <!-- Profile -->
+    <string name="setup_profile">Setup Your Profile</string>
+    <string name="username">Username</string>
+    <string name="enter_username">Enter unique username (3-20 characters, alphanumeric)</string>
+    <string name="choose_profile_image">Choose Profile Image</string>
+    <string name="save_profile">Save Profile</string>
+    <string name="username_taken">Username already taken</string>
+    
+    <!-- Game -->
+    <string name="player_x">Player X</string>
+    <string name="player_o">Player O</string>
+    <string name="your_turn">Your turn</string>
+    <string name="opponent_turn">Opponent\'s turn</string>
+    <string name="you_won">You Won!</string>
+    <string name="you_lost">You Lost!</string>
+    <string name="draw">It\'s a Draw!</string>
+    <string name="winner_x">X Wins!</string>
+    <string name="winner_o">O Wins!</string>
+    <string name="play_again">Play Again</string>
+    <string name="back_to_menu">Back to Menu</string>
+    
+    <!-- About -->
+    <string name="developer">Developer</string>
+    <string name="developer_name">مصطفى عايد</string>
+    <string name="version">Version</string>
+    <string name="version_number">1.0</string>
+    
+    <!-- Common -->
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="loading">Loading...</string>
+    
+    <!-- Firebase -->
+    <string name="default_web_client_id">YOUR_WEB_CLIENT_ID_HERE</string>
+</resources>

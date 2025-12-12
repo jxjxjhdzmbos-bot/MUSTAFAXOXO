@@ -1,0 +1,34 @@
+{
+  "project_info": {
+    "project_number": "123456789",
+    "project_id": "xo-game-placeholder",
+    "storage_bucket": "xo-game-placeholder.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123456789:android:placeholder",
+        "android_client_info": {
+          "package_name": "com.mustafa.xogame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123456789-placeholder.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyPlaceholder-Key-Replace-This"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
