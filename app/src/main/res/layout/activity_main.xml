@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="@color/background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/primary"
+        android:layout_marginBottom="48dp"/>
+
+    <TextView
+        android:id="@+id/userNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="24dp"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/offlineModeButton"
+        style="@style/ButtonStyle"
+        android:text="@string/offline_mode"
+        android:backgroundTint="@color/primary"/>
+
+    <Button
+        android:id="@+id/onlineModeButton"
+        style="@style/ButtonStyle"
+        android:text="@string/online_mode"
+        android:backgroundTint="@color/accent"/>
+
+    <Button
+        android:id="@+id/aboutButton"
+        style="@style/ButtonStyle"
+        android:text="@string/about"
+        android:backgroundTint="@color/teal_700"/>
+
+    <Button
+        android:id="@+id/signInButton"
+        style="@style/ButtonStyle"
+        android:text="@string/sign_in"
+        android:layout_marginTop="24dp"/>
+
+    <Button
+        android:id="@+id/signOutButton"
+        style="@style/ButtonStyle"
+        android:text="@string/sign_out"
+        android:layout_marginTop="24dp"
+        android:visibility="gone"/>
+
+</LinearLayout>
