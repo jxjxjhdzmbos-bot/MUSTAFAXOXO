@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-import androidx.annotation.Nullable;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseUser;
@@ -14,7 +15,6 @@ import com.mustafa.xogame.firebase.FirebaseHelper;
 import com.mustafa.xogame.models.User;
 
 public class ProfileSetupActivity extends AppCompatActivity {
-    private static final int PICK_IMAGE_REQUEST = 1;
 
     private ImageView profileImageView;
     private Button chooseImageButton;
@@ -23,6 +23,7 @@ public class ProfileSetupActivity extends AppCompatActivity {
 
     private Uri selectedImageUri;
     private FirebaseHelper firebaseHelper;
+    private ActivityResultLauncher<Intent> imagePickerLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +31,44 @@ public class ProfileSetupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_setup);
 
         firebaseHelper = FirebaseHelper.getInstance();
+        setupImagePickerLauncher();
         initializeViews();
         setupClickListeners();
+    }
+
+    private void setupImagePickerLauncher() {
+        imagePickerLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    selectedImageUri = result.getData().getData();
+                    if (selectedImageUri != null) {
+                        // Validate image size (max 5MB)
+                        try {
+                            android.content.ContentResolver resolver = getContentResolver();
+                            android.database.Cursor cursor = resolver.query(selectedImageUri, null, null, null, null);
+                            if (cursor != null) {
+                                int sizeIndex = cursor.getColumnIndex(android.provider.OpenableColumns.SIZE);
+                                cursor.moveToFirst();
+                                long size = cursor.getLong(sizeIndex);
+                                cursor.close();
+                                
+                                if (size > 5 * 1024 * 1024) { // 5MB limit
+                                    Toast.makeText(this, "Image must be less than 5MB", 
+                                        Toast.LENGTH_SHORT).show();
+                                    selectedImageUri = null;
+                                    return;
+                                }
+                            }
+                        } catch (Exception e) {
+                            // If size check fails, continue but log
+                            e.printStackTrace();
+                        }
+                        profileImageView.setImageURI(selectedImageUri);
+                    }
+                }
+            }
+        );
     }
 
     private void initializeViews() {
@@ -50,19 +87,7 @@ public class ProfileSetupActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Profile Image"), 
-            PICK_IMAGE_REQUEST);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK 
-            && data != null && data.getData() != null) {
-            selectedImageUri = data.getData();
-            profileImageView.setImageURI(selectedImageUri);
-        }
+        imagePickerLauncher.launch(Intent.createChooser(intent, "Select Profile Image"));
     }
 
     private void saveProfile() {
@@ -70,6 +95,13 @@ public class ProfileSetupActivity extends AppCompatActivity {
 
         if (username.isEmpty()) {
             Toast.makeText(this, "Please enter a username", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Validate username: alphanumeric and underscores only, 3-20 characters
+        if (!username.matches("^[a-zA-Z0-9_]{3,20}$")) {
+            Toast.makeText(this, "Username must be alphanumeric (3-20 characters)", 
+                Toast.LENGTH_SHORT).show();
             return;
         }
 

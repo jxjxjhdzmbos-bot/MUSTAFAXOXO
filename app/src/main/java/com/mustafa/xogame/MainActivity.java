@@ -6,7 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.Nullable;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -22,7 +23,6 @@ import com.mustafa.xogame.firebase.FirebaseHelper;
 import com.mustafa.xogame.models.User;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int RC_SIGN_IN = 9001;
 
     private Button offlineModeButton;
     private Button onlineModeButton;
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private GoogleSignInClient googleSignInClient;
     private FirebaseHelper firebaseHelper;
+    private ActivityResultLauncher<Intent> signInLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +42,29 @@ public class MainActivity extends AppCompatActivity {
 
         firebaseHelper = FirebaseHelper.getInstance();
         setupGoogleSignIn();
+        setupSignInLauncher();
         initializeViews();
         setupClickListeners();
         updateUI();
+    }
+
+    private void setupSignInLauncher() {
+        signInLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getData() != null) {
+                    Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
+                    try {
+                        GoogleSignInAccount account = task.getResult(ApiException.class);
+                        if (account != null) {
+                            firebaseAuthWithGoogle(account);
+                        }
+                    } catch (ApiException e) {
+                        Toast.makeText(this, "Sign in failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        );
     }
 
     private void setupGoogleSignIn() {
@@ -91,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void signIn() {
         Intent signInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        signInLauncher.launch(signInIntent);
     }
 
     private void signOut() {
@@ -100,23 +121,6 @@ public class MainActivity extends AppCompatActivity {
             updateUI();
             Toast.makeText(this, "Signed out successfully", Toast.LENGTH_SHORT).show();
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                if (account != null) {
-                    firebaseAuthWithGoogle(account);
-                }
-            } catch (ApiException e) {
-                Toast.makeText(this, "Sign in failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {

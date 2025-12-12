@@ -75,6 +75,13 @@ public class OnlineMenuActivity extends AppCompatActivity {
             return;
         }
 
+        // Validate room name: alphanumeric and underscores only, max 20 characters
+        if (!roomName.matches("^[a-zA-Z0-9_]{1,20}$")) {
+            Toast.makeText(this, "Room name must be alphanumeric (1-20 characters)", 
+                Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         createRoomButton.setEnabled(false);
         joinRoomButton.setEnabled(false);
         waitingText.setVisibility(View.VISIBLE);
@@ -101,6 +108,13 @@ public class OnlineMenuActivity extends AppCompatActivity {
         
         if (roomName.isEmpty()) {
             Toast.makeText(this, "Please enter a room name", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Validate room name: alphanumeric and underscores only, max 20 characters
+        if (!roomName.matches("^[a-zA-Z0-9_]{1,20}$")) {
+            Toast.makeText(this, "Room name must be alphanumeric (1-20 characters)", 
+                Toast.LENGTH_SHORT).show();
             return;
         }
 
