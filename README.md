@@ -64,6 +64,10 @@ An Android application for XO (Tic-Tac-Toe) game with offline and online modes.
    - Copy the Web client ID
    - Replace `YOUR_WEB_CLIENT_ID_HERE` in `app/src/main/res/values/strings.xml` with your Web client ID
 
+5. **Configure Firebase Security Rules**:
+   - See `FIREBASE_SECURITY.md` for required Database and Storage security rules
+   - **IMPORTANT**: Apply these rules before deploying to production
+
 ### Building the App
 
 1. Clone the repository:
@@ -98,6 +102,28 @@ app/src/main/java/com/mustafa/xogame/
 ├── OnlineMenuActivity.java    # Online mode menu
 └── ProfileSetupActivity.java  # User profile setup
 ```
+
+## Security Features
+
+- **Input Validation**: Usernames and room names are validated (alphanumeric, 3-20 characters)
+- **File Size Limits**: Profile images limited to 5MB
+- **Firebase Security Rules**: Comprehensive rules for Database and Storage (see FIREBASE_SECURITY.md)
+- **Modern Android APIs**: Uses ActivityResultLauncher instead of deprecated methods
+- **Authentication Required**: All online features require Google Sign-In
+
+## Important Notes
+
+1. **Firebase Configuration Required**: 
+   - Replace `app/google-services.json` with your actual Firebase configuration
+   - Update `default_web_client_id` in strings.xml with your Web Client ID
+   
+2. **Firebase Security Rules**:
+   - Apply the security rules from `FIREBASE_SECURITY.md`
+   - Never use test mode rules in production
+   
+3. **Network Requirements**:
+   - Online mode requires active internet connection
+   - Real-time synchronization requires stable connection
 
 ## Game Rules
 

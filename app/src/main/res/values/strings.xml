@@ -22,7 +22,7 @@
     <string name="create_room">Create Room</string>
     <string name="join_room">Join Room</string>
     <string name="room_name">Room Name</string>
-    <string name="enter_room_name">Enter room name</string>
+    <string name="enter_room_name">Enter room name (1-20 characters, alphanumeric)</string>
     <string name="waiting_for_opponent">Waiting for opponent...</string>
     <string name="opponent_disconnected">Opponent disconnected</string>
     <string name="connection_error">Connection error</string>
@@ -30,7 +30,7 @@
     <!-- Profile -->
     <string name="setup_profile">Setup Your Profile</string>
     <string name="username">Username</string>
-    <string name="enter_username">Enter unique username</string>
+    <string name="enter_username">Enter unique username (3-20 characters, alphanumeric)</string>
     <string name="choose_profile_image">Choose Profile Image</string>
     <string name="save_profile">Save Profile</string>
     <string name="username_taken">Username already taken</string>
